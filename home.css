@@ -1,4 +1,4 @@
-﻿@import url("laptop3d.css?v=6");
+﻿@import url("laptop3d.css?v=7");
 /* ===== cinematic home page («أثر») ===== */
 .home main section { padding: 0; }
 
@@ -29,7 +29,20 @@
 .scroll-hint i::after { content: ""; position: absolute; top: 7px; left: 50%; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--gold2); animation: wheel 1.6s infinite; }
 @keyframes wheel { from { transform: translateY(0); opacity: 1; } to { transform: translateY(14px); opacity: 0; } }
 
-/* hero sides: two floating phones (a real store + a real ad) and small gold tags */
+/* hero picture that explains the work (laptop store, phone ad, identity, profile, camera); the middle stays dark for the title */
+.intro .bgimg { position: absolute; inset: 0; z-index: 0; background: url(img/hero_work.jpg) center / cover no-repeat; animation: bgIn 2.6s .2s ease both, bgDrift 30s 2.8s ease-in-out infinite alternate; }
+.intro .bgimg::after { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(38% 55% at 50% 52%, rgba(9,9,11,.82) 0%, rgba(9,9,11,.55) 55%, rgba(9,9,11,.15) 100%),
+              linear-gradient(180deg, rgba(9,9,11,.55) 0%, transparent 18%, transparent 78%, #0e0d10 100%); }
+@keyframes bgIn { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1.02); } }
+@keyframes bgDrift { from { transform: scale(1.02); } to { transform: scale(1.07) translateY(-1%); } }
+.intro .rings { z-index: 1; }
+@media (max-width: 860px) {
+  .intro .bgimg { background-image: url(img/hero_work_sm.jpg); background-position: 30% center; }
+  .intro .bgimg::after { background: rgba(9,9,11,.72); }
+}
+
+/* (old) hero side phones and tags, no longer used */
 .hph { position: absolute; top: 50%; z-index: 1; width: clamp(150px, 12vw, 220px); box-sizing: content-box; aspect-ratio: 1000 / 2166; padding-top: 14px;
   border: 8px solid #050505; border-radius: 34px; overflow: hidden; background: #000; box-shadow: 0 40px 70px rgba(0,0,0,.65), 0 0 0 1px #3a352c, 0 0 80px rgba(201,164,92,.12); }
 .hph::before { content: ""; position: absolute; top: 4px; left: 35%; width: 30%; height: 8px; background: #1a1a1a; border-radius: 8px; z-index: 2; }
