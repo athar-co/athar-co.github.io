@@ -59,7 +59,21 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 .glow::before { content: ""; position: absolute; width: 600px; height: 600px; border-radius: 50%; top: -260px; left: -220px; background: radial-gradient(circle, rgba(201,164,92,.12), transparent 65%); pointer-events: none; }
 
 /* ---------- page hero (inner pages): a calm full-height opening slide ---------- */
-.phero { min-height: 0; padding: 120px 0 80px; display: flex; align-items: center; text-align: center; overflow: hidden; position: relative;
+/* each inner page gets its own AI-made background; the middle stays dark for the title */
+.phero .pbg { position: absolute; inset: 0; background: center / cover no-repeat; animation: pbgIn 2.4s ease both; }
+.phero .pbg::after { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(40% 60% at 50% 55%, rgba(9,9,11,.85), rgba(9,9,11,.5) 60%, rgba(9,9,11,.2) 100%), linear-gradient(180deg, rgba(9,9,11,.5), transparent 25%, transparent 75%, #0c0c0f); }
+@keyframes pbgIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+.page-services .pbg { background-image: url(img/services_bg.jpg); }
+.page-work .pbg { background-image: url(img/work_bg.jpg); }
+.page-contact .pbg { background-image: url(img/contact_bg.jpg); }
+@media (max-width: 860px) {
+  .page-services .pbg { background-image: url(img/services_bg_sm.jpg); }
+  .page-work .pbg { background-image: url(img/work_bg_sm.jpg); }
+  .page-contact .pbg { background-image: url(img/contact_bg_sm.jpg); }
+  .phero .pbg::after { background: rgba(9,9,11,.7); }
+}
+.phero { min-height: 62vh; padding: 120px 0 80px; display: flex; align-items: center; text-align: center; overflow: hidden; position: relative;
          background: radial-gradient(70% 70% at 50% 60%, #241e14 0%, #111014 55%, #0b0b0e 85%); border-bottom: 1px solid rgba(201,164,92,.12); }
 .phero .wrap { position: relative; z-index: 2; }
 .phero h1 { font-size: clamp(42px, 7vw, 86px); margin-top: 6px; animation: soft 2.2s .4s ease both; }

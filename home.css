@@ -1,4 +1,4 @@
-﻿@import url("laptop3d.css?v=7");
+﻿@import url("laptop3d.css?v=8");
 /* ===== cinematic home page («أثر») ===== */
 .home main section { padding: 0; }
 
@@ -30,7 +30,7 @@
 @keyframes wheel { from { transform: translateY(0); opacity: 1; } to { transform: translateY(14px); opacity: 0; } }
 
 /* hero picture that explains the work (laptop store, phone ad, identity, profile, camera); the middle stays dark for the title */
-.intro .bgimg { position: absolute; inset: 0; z-index: 0; background: url(img/hero_work.jpg) center / cover no-repeat; animation: bgIn 2.6s .2s ease both, bgDrift 30s 2.8s ease-in-out infinite alternate; }
+.intro .bgimg { position: absolute; inset: 0; z-index: 0; background: url(img/home_bg.jpg) center / cover no-repeat; animation: bgIn 2.6s .2s ease both, bgDrift 30s 2.8s ease-in-out infinite alternate; }
 .intro .bgimg::after { content: ""; position: absolute; inset: 0;
   background: radial-gradient(38% 55% at 50% 52%, rgba(9,9,11,.82) 0%, rgba(9,9,11,.55) 55%, rgba(9,9,11,.15) 100%),
               linear-gradient(180deg, rgba(9,9,11,.55) 0%, transparent 18%, transparent 78%, #0e0d10 100%); }
@@ -38,7 +38,7 @@
 @keyframes bgDrift { from { transform: scale(1.02); } to { transform: scale(1.07) translateY(-1%); } }
 .intro .rings { z-index: 1; }
 @media (max-width: 860px) {
-  .intro .bgimg { background-image: url(img/hero_work_sm.jpg); background-position: 30% center; }
+  .intro .bgimg { background-image: url(img/home_bg_sm.jpg); background-position: 30% center; }
   .intro .bgimg::after { background: rgba(9,9,11,.72); }
 }
 
@@ -82,6 +82,13 @@
 .manifesto .text span.lit { opacity: 1; }
 .manifesto .text span.g.lit { color: var(--gold2); }
 .manifesto .stats { margin-top: 60px; }
+
+/* industries we serve */
+.inds { margin-top: 56px; text-align: center; }
+.inds h3 { font-size: clamp(24px, 2.6vw, 34px); margin-bottom: 22px; }
+.inds > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.inds span { display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; border: 1px solid var(--line); border-radius: 40px; color: var(--ivory); font-size: 16px; background: rgba(255,255,255,.02); }
+.inds i { font-style: normal; font-size: 20px; }
 
 /* --- 3. pinned work story --- */
 .story { position: relative; background: linear-gradient(#0b0b0e, #121014 20%, #121014 80%, #0b0b0e); }
