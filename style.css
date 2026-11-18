@@ -97,11 +97,13 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 .laptop .scr img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .laptop .base { height: clamp(8px, 1.4vw, 16px); width: 112%; margin-right: -6%; background: linear-gradient(#d9d4ca, #7d776c); border-radius: 0 0 16px 16px; position: relative; }
 .laptop .base::after { content: ""; position: absolute; left: 42%; width: 16%; height: 40%; top: 0; background: #a8a194; border-radius: 0 0 8px 8px; }
-.phone { position: absolute; aspect-ratio: 9 / 19.5; border: clamp(4px, .7vw, 8px) solid #050505; border-radius: clamp(14px, 2.2vw, 26px); overflow: hidden; background: #000; box-shadow: 0 20px 40px rgba(0,0,0,.65); outline: 1px solid #3a352c; }
+/* screen area keeps the screenshots' exact proportions; the notch sits in its own black status bar, so nothing is cut */
+.phone { position: absolute; box-sizing: content-box; aspect-ratio: 1000 / 2166; padding-top: clamp(8px, 1.3vw, 15px); border: clamp(4px, .7vw, 8px) solid #050505; border-radius: clamp(14px, 2.2vw, 26px); overflow: hidden; background: #000; box-shadow: 0 20px 40px rgba(0,0,0,.65); outline: 1px solid #3a352c; }
 .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.phone::before { content: ""; position: absolute; top: 4%; left: 35%; width: 30%; height: 3.2%; background: #050505; border-radius: 10px; z-index: 3; }
-.phone.reel > img { position: absolute; inset: 0; }
-.phone.live-reel > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.phone::before { content: ""; position: absolute; top: clamp(2px, .35vw, 4px); left: 35%; width: 30%; height: clamp(4px, .7vw, 8px); background: #1a1a1a; border-radius: 10px; z-index: 3; }
+.phone.reel > img { position: static; }
+.phone.live-reel { aspect-ratio: 9 / 16; }
+.phone.live-reel > video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .phone.live-reel::after { display: none; }
 .phone.reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(0,0,0,.75)); }
 .r-cap { position: absolute; right: 8%; left: 18%; bottom: 7%; z-index: 2; color: #fff; display: flex; flex-direction: column; gap: 4px; font-family: var(--body); }
