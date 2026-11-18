@@ -59,6 +59,18 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 .glow::before { content: ""; position: absolute; width: 600px; height: 600px; border-radius: 50%; top: -260px; left: -220px; background: radial-gradient(circle, rgba(201,164,92,.12), transparent 65%); pointer-events: none; }
 
 /* ---------- page hero (inner pages): a calm full-height opening slide ---------- */
+/* faint scene backgrounds behind some sections (same style as the page heroes), fading at top and bottom */
+.sb { position: relative; overflow: hidden; }
+.sb::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--sbimg) center / cover no-repeat; opacity: .2;
+  -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
+.sb > .wrap { position: relative; z-index: 1; }
+.sb-hero { --sbimg: url(img/hero_work.jpg?v=9); }
+.sb-home { --sbimg: url(img/home_bg.jpg?v=9); }
+.sb-services { --sbimg: url(img/services_bg.jpg?v=9); }
+.sb-work { --sbimg: url(img/work_bg.jpg?v=9); }
+.sb-contact { --sbimg: url(img/contact_bg.jpg?v=9); }
+@media (max-width: 860px) { .sb::before { opacity: .14; } }
+
 /* each inner page gets its own AI-made background; the middle stays dark for the title */
 .phero .pbg { position: absolute; inset: 0; background: center / cover no-repeat; animation: pbgIn 2.4s ease both; }
 .phero .pbg::after { content: ""; position: absolute; inset: 0;
