@@ -64,6 +64,8 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 .sb::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--sbimg) center / cover no-repeat; opacity: .2;
   -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
 .sb > .wrap { position: relative; z-index: 1; }
+/* the .glow sections also use ::before (a round glow); make the picture cover the whole section instead */
+.glow.sb::before, .sb::before { top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; border-radius: 0; }
 .sb-hero { --sbimg: url(img/hero_work.jpg?v=9); }
 .sb-home { --sbimg: url(img/home_bg.jpg?v=9); }
 .sb-services { --sbimg: url(img/services_bg.jpg?v=9); }
