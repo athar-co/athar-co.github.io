@@ -16,7 +16,7 @@
   var target = 0, cur = 0, running = false;
 
   // timeline (fractions of the section's scroll)
-  var T = { turn: [0, .14], open: [.03, .17], aside: [.24, .33], works: [.34, .98] };
+  var T = { turn: [0, .13], open: [.02, .15], aside: [.17, .25], works: [.26, .98] };
 
   function measure() {
     var r = sec.getBoundingClientRect();

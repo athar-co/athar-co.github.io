@@ -41,7 +41,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 .burger svg { width: 22px; height: 22px; margin: auto; }
 
 /* ---------- section headings ---------- */
-section { padding: 100px 0; position: relative; }
+section { padding: 80px 0; position: relative; }
 .lab { font-family: var(--lat); font-style: italic; font-size: 20px; color: var(--gold); direction: ltr; display: block; }
 .hd { margin-bottom: 50px; max-width: 720px; }
 .hd.center { text-align: center; margin-inline: auto; }
@@ -59,7 +59,7 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 .glow::before { content: ""; position: absolute; width: 600px; height: 600px; border-radius: 50%; top: -260px; left: -220px; background: radial-gradient(circle, rgba(201,164,92,.12), transparent 65%); pointer-events: none; }
 
 /* ---------- page hero (inner pages): a calm full-height opening slide ---------- */
-.phero { min-height: 72vh; min-height: 72svh; display: flex; align-items: center; text-align: center; overflow: hidden; position: relative;
+.phero { min-height: 0; padding: 120px 0 80px; display: flex; align-items: center; text-align: center; overflow: hidden; position: relative;
          background: radial-gradient(70% 70% at 50% 60%, #241e14 0%, #111014 55%, #0b0b0e 85%); border-bottom: 1px solid rgba(201,164,92,.12); }
 .phero .wrap { position: relative; z-index: 2; }
 .phero h1 { font-size: clamp(42px, 7vw, 86px); margin-top: 6px; animation: soft 2.2s .4s ease both; }
@@ -72,7 +72,7 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 @keyframes ring { from { transform: scale(.6); opacity: 0; } 20% { opacity: 1; } to { transform: scale(2.4); opacity: 0; } }
 
 /* work page: every project gets the whole screen */
-.page-work .proj { min-height: 78vh; margin-bottom: 50px; padding: 50px 60px; }
+.page-work .proj { margin-bottom: 34px; padding: 44px 56px; }
 .page-work .proj .mock { transform: scale(1.04); }
 
 /* ---------- home hero ---------- */

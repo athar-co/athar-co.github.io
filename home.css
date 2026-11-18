@@ -1,9 +1,11 @@
-﻿@import url("laptop3d.css?v=3");
+﻿@import url("laptop3d.css?v=4");
 /* ===== cinematic home page («أثر») ===== */
 .home main section { padding: 0; }
 
 /* full-screen slides */
 .slide { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; position: relative; overflow: hidden; }
+/* only the opening is a full screen; the other slides size to their content */
+.slide.manifesto, .slide.why, .slide.final { min-height: 0; padding: 110px 0; }
 .slide .wrap { position: relative; z-index: 2; }
 
 /* --- 1. intro --- */
@@ -101,7 +103,7 @@
 .final .rv { transition-duration: 1.1s; }
 
 /* --- video ads: three phones playing real reels --- */
-.vids { padding: 110px 0 120px; background: radial-gradient(60% 60% at 50% 60%, #241e14, #0c0c0f 70%); overflow: hidden; }
+.vids { padding: 80px 0 90px; background: radial-gradient(60% 60% at 50% 60%, #241e14, #0c0c0f 70%); overflow: hidden; }
 .reels { display: flex; justify-content: center; align-items: center; gap: 46px; margin-top: 10px; }
 .reelph { margin: 0; text-align: center; }
 .vphone { position: relative; width: 250px; box-sizing: content-box; aspect-ratio: 9 / 16; padding-top: 26px; border: 9px solid #050505; border-radius: 38px; overflow: hidden; background: #000;
