@@ -1,0 +1,114 @@
+/* ===== 3D laptop scene: opens, turns and pulls you into the screen as you scroll ===== */
+.l3 { position: relative; background: radial-gradient(80% 70% at 50% 60%, #1d1912 0%, #0e0d10 55%, #09090b 85%); }
+.l3 .pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.l3 .stage3 { --w: min(64vw, 820px); --h: calc(var(--w) * .625); --d: calc(var(--w) * .66);
+  perspective: 2200px; perspective-origin: 50% 35%; width: var(--w); height: var(--h); position: relative; z-index: 2; }
+.l3 .rig { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+
+/* lid (hinged on its bottom edge) */
+.l3 .lid { position: absolute; inset: 0; transform-origin: 50% 100%; transform-style: preserve-3d; will-change: transform; }
+.l3 .lid .face { position: absolute; inset: 0; border-radius: 16px 16px 6px 6px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.l3 .lid .front { background: #050505; padding: 1.6% 1.6% 3.2%; box-shadow: inset 0 0 0 1px #2a2a2a; }
+.l3 .lid .front .glass { width: 100%; height: 100%; border-radius: 6px; overflow: hidden; position: relative; background: #000; }
+.l3 .lid .front .glass img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.l3 .lid .front .glass::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,.10) 0%, transparent 35%); pointer-events: none; }
+.l3 .lid .front .cam { position: absolute; top: .6%; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #1d2a33; }
+.l3 .lid .back { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, #3a3631 0%, #24221f 45%, #181715 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.l3 .lid .back img { width: 22%; transform: rotate(180deg); opacity: .95; filter: drop-shadow(0 0 18px rgba(212,176,106,.45)); }
+.l3 .glow3 { position: absolute; inset: -2%; border-radius: 20px; background: radial-gradient(closest-side, rgba(212,176,106,.35), transparent); filter: blur(30px); transform: translateZ(-2px); opacity: var(--screen, 0); }
+
+/* base: a flat deck that lies toward the viewer from the hinge */
+.l3 .base3 { position: absolute; left: -4%; width: 108%; top: 100%; height: var(--d); transform-origin: 50% 0; transform: translateY(10px) rotateX(90deg); transform-style: preserve-3d;
+  background: linear-gradient(180deg, #3a3732, #2a2825); border-radius: 0 0 22px 22px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
+.l3 .keys { position: absolute; left: 8%; right: 8%; top: 9%; height: 46%; border-radius: 8px; background-color: #121110;
+  background-image: linear-gradient(#2b2926 0 0), repeating-linear-gradient(90deg, transparent 0 1.2%, #121110 1.2% 1.6%), repeating-linear-gradient(0deg, transparent 0 16%, #121110 16% 20%);
+  background-blend-mode: normal; background-image: repeating-linear-gradient(90deg, #2a2825 0 5.6%, #121110 5.6% 6.67%), none; }
+.l3 .keys::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 15.5%, #121110 15.5% 20%); border-radius: 8px; }
+.l3 .pad { position: absolute; left: 33%; right: 33%; top: 62%; height: 30%; border-radius: 10px; background: #2a2724; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+.l3 .lip { position: absolute; left: 0; right: 0; bottom: 0; height: 14px; transform-origin: 50% 100%; transform: rotateX(-90deg); background: #191816; border-radius: 0 0 10px 10px; }
+.l3 .shadow3 { position: absolute; left: 0; right: 0; top: 100%; height: var(--d); transform-origin: 50% 0; transform: rotateX(90deg) translateZ(-30px) scale(1.15);
+  background: radial-gradient(closest-side, rgba(0,0,0,.75), transparent); filter: blur(20px); }
+
+/* the «أثر» screen: sizes follow the screen itself (cqw), so it stays crisp while the camera zooms in */
+.l3 .os { container-type: size; background: radial-gradient(80% 90% at 50% 40%, #2a2216 0%, #121014 55%, #09090b 100%); display: flex; flex-direction: column; font-family: var(--body); }
+.l3 .os::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(115deg, rgba(201,164,92,.05) 0 1px, transparent 1px 3cqw); }
+.os-bar { position: relative; display: flex; align-items: center; gap: 2.2cqw; height: 8cqh; padding: 0 3cqw; border-bottom: 1px solid rgba(201,164,92,.18); }
+.l3 .lid .front .os img { width: auto; object-fit: contain; display: block; }
+.l3 .lid .front .os .os-bar img { height: 4.6cqh; }
+.l3 .lid .front .os .os-logo { height: 26cqh; }
+.l3 .lid .front .os .os-site { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.04); transition: transform 6s ease; }
+.l3 .stage3.boot .os .os-site { transform: none; }
+.os-bar span { width: 6cqw; height: .9cqh; border-radius: 1cqw; background: rgba(242,236,224,.25); }
+.os-bar b { margin-inline-start: auto; font-size: 1.5cqw; color: #111; background: linear-gradient(var(--gold2), var(--gold)); padding: .6cqh 1.6cqw; border-radius: 3cqw; font-weight: 600; }
+.os-main { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 1.6cqh; }
+.os-logo { height: 26cqh; width: auto; }
+.os-h { font-family: var(--head); font-weight: 700; color: var(--ivory); font-size: 5.2cqw; line-height: 1.2; }
+.os-h span { color: var(--gold2); }
+.os-p { font-size: 1.8cqw; color: var(--text); letter-spacing: .1cqw; }
+.os-tiles { display: flex; gap: 1.4cqw; margin-top: 2cqh; }
+.os-tiles i { display: flex; flex-direction: column; align-items: center; gap: .8cqh; width: 10cqw; padding: 1.6cqh 0 1.2cqh; border: 1px solid rgba(201,164,92,.28); border-radius: 1.4cqw; background: rgba(255,255,255,.03); font-style: normal; }
+.os-tiles svg { width: 2.6cqw; height: 2.6cqw; }
+.os-tiles em { font-style: normal; font-size: 1.15cqw; color: var(--ivory); white-space: nowrap; }
+.os-scan { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(236,212,155,.18) 50%, transparent 100%); background-size: 100% 30%; background-repeat: no-repeat; opacity: 0; }
+
+/* power-on sequence (stage gets .boot when the lid is almost open) */
+.l3 .os .os-bar, .l3 .os .os-logo, .l3 .os .os-h, .l3 .os .os-p, .l3 .os .os-tiles i { opacity: 0; transform: translateY(1.5cqh); transition: opacity 1.2s ease, transform 1.4s ease; }
+.l3 .os { filter: brightness(.15); transition: filter 1.4s ease; }
+.l3 .stage3.boot .os { filter: none; }
+.l3 .stage3.boot .os-scan { animation: scan 1.8s ease-out .1s 1 both; }
+@keyframes scan { 0% { opacity: 1; background-position: 0 -40%; } 100% { opacity: 0; background-position: 0 140%; } }
+.l3 .stage3.boot .os-logo { opacity: 1; transform: none; transition-delay: .5s; }
+.l3 .stage3.boot .os-h { opacity: 1; transform: none; transition-delay: .9s; }
+.l3 .stage3.boot .os-p { opacity: 1; transform: none; transition-delay: 1.15s; }
+.l3 .stage3.boot .os-bar { opacity: 1; transform: none; transition-delay: 1.3s; }
+.l3 .stage3.boot .os-tiles i { opacity: 1; transform: none; }
+.l3 .stage3.boot .os-tiles i:nth-child(1) { transition-delay: 1.4s; } .l3 .stage3.boot .os-tiles i:nth-child(2) { transition-delay: 1.55s; }
+.l3 .stage3.boot .os-tiles i:nth-child(3) { transition-delay: 1.7s; } .l3 .stage3.boot .os-tiles i:nth-child(4) { transition-delay: 1.85s; }
+.l3 .stage3.boot .os-tiles i:nth-child(5) { transition-delay: 2s; } .l3 .stage3.boot .os-tiles i:nth-child(6) { transition-delay: 2.15s; }
+
+/* the screen layers: «أثر» home screen, then one layer per project */
+.l3 .os { position: absolute; inset: 0; transition: filter 1.4s ease, opacity 1.6s ease; }
+.l3 .shot { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
+.l3 .shot.on { opacity: 1; }
+.l3 .shot > .scr { width: 100%; height: 100%; border: 0; border-radius: 0; box-shadow: none; }
+.l3 .lid .front .glass .shot .ig-grid img { width: 100%; height: 100%; }
+.l3 .lid .front .glass .shot .ig-top b, .l3 .lid .front .glass .shot .ig-info { font-size: 1.2cqw; }
+
+/* project details beside the laptop */
+.l3 .side { position: absolute; z-index: 3; top: 50%; right: max(24px, calc((100vw - var(--max)) / 2)); width: min(380px, 30vw); transform: translateY(-50%);
+  opacity: var(--aside, 0); pointer-events: none; }
+.l3 .side.live { pointer-events: auto; }
+.l3 .side-head .lab { text-align: right; }
+.l3 .side-head h2 { font-size: clamp(26px, 2.8vw, 38px); }
+.l3 .side-head .count { font-family: var(--lat); font-size: 20px; color: var(--gold); direction: ltr; text-align: right; margin-top: 4px; }
+.l3 .side-head .count b { font-size: 34px; color: var(--gold2); font-weight: 600; }
+.l3 .side .texts { position: relative; min-height: 220px; margin-top: 18px; }
+.l3 .side .texts .t { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; opacity: 0; transform: translateY(10px); transition: opacity 1.2s ease, transform 1.6s ease; }
+.l3 .side .texts .t.on { opacity: 1; transform: none; transition: opacity 1.6s ease .4s, transform 1.8s ease .4s; }
+.l3 .side .texts h3 { font-size: clamp(26px, 2.6vw, 36px); margin: 12px 0 8px; }
+.l3 .side .texts p { font-size: 16px; }
+.l3 .pdots { display: flex; gap: 8px; margin-top: 10px; }
+.l3 .pdots i { width: 8px; height: 8px; border-radius: 6px; background: rgba(201,164,92,.3); transition: .5s; }
+.l3 .pdots i.on { width: 26px; background: var(--gold2); }
+
+/* captions that change while the laptop opens */
+.l3 .caps { position: absolute; left: 0; right: 0; top: 13vh; text-align: center; z-index: 3; pointer-events: none; }
+.l3 .cap3 { position: absolute; left: 0; right: 0; top: 0; opacity: 0; transform: translateY(10px); transition: opacity 1.4s ease, transform 1.6s ease; }
+.l3 .cap3.on { opacity: 1; transform: none; }
+.l3 .cap3 h2 { font-size: clamp(28px, 4vw, 52px); }
+.l3 .cap3 p { margin-top: 6px; font-size: 18px; color: var(--text); font-weight: 300; }
+.l3 .veil { position: absolute; inset: 0; background: #121014; opacity: 0; z-index: 4; pointer-events: none; }
+
+@media (max-width: 860px) {
+  .l3 .stage3 { --w: 84vw; perspective: 1400px; }
+  .l3 .caps { top: 12vh; }
+  .l3 .side { top: auto; bottom: 7vh; right: 20px; left: 20px; width: auto; transform: none; }
+  .l3 .side-head h2, .l3 .side-head .lab { display: none; }
+  .l3 .side-head .count { font-size: 16px; } .l3 .side-head .count b { font-size: 24px; }
+  .l3 .side .texts { min-height: 170px; margin-top: 6px; }
+  .l3 .side .texts h3 { font-size: 26px; margin: 8px 0 4px; }
+  .l3 .side .texts p { font-size: 14.5px; }
+  .l3 .cap3 p { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .l3 .rig, .l3 .lid { transition: none !important; } }
