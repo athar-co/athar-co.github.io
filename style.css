@@ -71,6 +71,12 @@ h1, h2, h3, h4 { font-family: var(--head); color: var(--ivory); line-height: 1.3
 .sb-services { --sbimg: url(img/services_bg.jpg?v=9); }
 .sb-work { --sbimg: url(img/work_bg.jpg?v=9); }
 .sb-contact { --sbimg: url(img/contact_bg.jpg?v=9); }
+.sb-pkg { --sbimg: url(img/pkg_bg.jpg?v=12); }
+.sb-process { --sbimg: url(img/process_bg.jpg?v=12); }
+.sb-video { --sbimg: url(img/video_bg.jpg?v=12); }
+.sb-why { --sbimg: url(img/why_bg.jpg?v=12); }
+.sb-final { --sbimg: url(img/final_bg.jpg?v=12); }
+.sb-faq { --sbimg: url(img/faq_bg.jpg?v=12); }
 @media (max-width: 860px) { .sb::before { opacity: .14; } }
 
 /* each inner page gets its own AI-made background; the middle stays dark for the title */
